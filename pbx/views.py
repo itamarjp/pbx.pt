@@ -47,7 +47,7 @@ def newexten(request):
 
    exten = Extension(password=pwd,user_id=user_id,active=True)
    DBSession.add(exten)
-   return {'exten':exten.extension_id,'password':pwd}
+   return {}
 
 
 @view_config(route_name='newaccount',renderer='newaccount.mako')
