@@ -1,0 +1,3 @@
+- make pages beautiful (html + css)
+- recover password
+- send password to new users.
