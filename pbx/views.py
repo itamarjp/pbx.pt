@@ -59,13 +59,13 @@ def newaccount(request):
    pwd = ''.join([choice(string.letters + string.digits) for i in range(size)])
    if request.POST.get('email'):
         email=request.POST.get('email')
-        import datetime
+        from datetime import date
         u = User(email_address = email ,    display_name = '' ,    password = pwd ,    created = date.today() ,)
         DBSession.add(u)
-        request.session.flash('New task was successfully added!')
-        return HTTPFound(location=request.route_url('list'))
+        request.session.flash('New account added, please check your e-mail account.')
+        return HTTPFound(location=request.route_url('home'))
    else:
-        request.session.flash('Please enter a name for the task!')
+        request.session.flash('Please enter your e-mail!')
  return {}
 
 
