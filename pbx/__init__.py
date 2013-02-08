@@ -21,6 +21,7 @@ def main(global_config, **settings):
     #session factory
     my_session_factory = UnencryptedCookieSessionFactoryConfig('itsaseekreet')
     config = Configurator(settings=settings,session_factory = my_session_factory)
+    config.include('pyramid_mailer')
     authn_policy = AuthTktAuthenticationPolicy('seekpbxrit', hashalg='sha512')
     authz_policy = ACLAuthorizationPolicy()
     config.set_authentication_policy(authn_policy)

@@ -13,9 +13,6 @@ from pyramid.security import forget
 from pyramid.security import remember
 from pyramid.view import forbidden_view_config
 
-
-
-
 from .models import (
     DBSession,
     MyModel,
@@ -62,6 +59,11 @@ def newaccount(request):
         from datetime import date
         u = User(email_address = email ,    display_name = '' ,    password = pwd ,    created = date.today() ,)
         DBSession.add(u)
+        from pyramid_mailer import get_mailer
+        mailer = get_mailer(request)
+        from pyramid_mailer.message import Message
+        message = Message(subject="new account on pbx.pt",sender="itamar@ispbrasil.com.br",recipients=[email], body="your pbx.pt account details user=email password=pwd")
+        mailer.send(message)
         request.session.flash('New account added, please check your e-mail account.')
         return HTTPFound(location=request.route_url('home'))
    else:
