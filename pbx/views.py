@@ -87,6 +87,12 @@ def listexten(request):
    return dict(extensions=rs)
 
 
+@view_config(route_name='sip.conf',renderer='sip.mako')
+def sip_conf(request):
+   rs = DBSession.query(Extension).all()
+   return dict(extensions=rs)
+
+
 @view_config(route_name='features',renderer='features.mako')
 def features(request):
   return {}

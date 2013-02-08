@@ -37,6 +37,7 @@ def main(global_config, **settings):
     config.add_route('features','/features')
     config.add_route('contact','/contact')
     config.add_route('support','/support')
+    config.add_route('sip.conf','/sip.conf')
     config.scan()
     return config.make_wsgi_app()
 
