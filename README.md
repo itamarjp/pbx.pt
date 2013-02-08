@@ -9,7 +9,7 @@ pbx.pt - free sip accounts
  $ virtualenv --no-site-packages env <br>
  $ cd env <br>
  $ bin/easy_install pyramid <br>
- $ . ./bin/activate pyramid  (yes, it's . ./) <br>
+ $ . ./bin/activate (yes, it's . ./) <br>
  $ git clone git://github.com/itamarjp/pbx.pt.git <br>
  $ cd pbx.pt <br>
  $ python setup.py develop <br>
