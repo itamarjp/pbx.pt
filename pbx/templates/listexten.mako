@@ -2,22 +2,20 @@
 
 <h1>Extension's List</h1>
 
-<ul id="extensions">
+<table border=1>
 % if extensions:
-  % for extension in extensions:
-  <li>
-    <span class="name">${extension.extension_id}</span>
-    <span class="name">${extension.password}</span>
-    <span class="actions">
-      [ <a href="${request.route_url('logout')}">close</a> ]
-    </span>
-  </li>
-  % endfor
-% else:
-  <li>There are no open extensions</li>
-% endif
-  <li class="last">
-    <a href="${request.route_url('newexten')}">Add a new extension</a>
-  </li>
-</ul>
+  <tr>
+    <td align=center>extension</td><td align=center>password</td>
+  </tr>
 
+  % for extension in extensions:
+   <tr>
+       <td>${"%04d" % extension.extension_id}</td>
+       <td>${extension.password}</td>
+   </tr>
+  % endfor
+
+% endif
+</table>
+
+<p><a href="${ request.route_url('home') }">Return to Home</a></p>
