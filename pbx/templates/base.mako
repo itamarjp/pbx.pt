@@ -3,8 +3,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Pyramid Task's List Tutorial</title>
-  <meta name="author" content="Pylons Project">
+  <title>pbx.pt - your free sip account</title>
   <link rel="shortcut icon" href="/static/favicon.ico">
   <link rel="stylesheet" href="/static/style.css">
 
