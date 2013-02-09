@@ -62,10 +62,32 @@ def newaccount(request):
         from pyramid_mailer import get_mailer
         mailer = get_mailer(request)
         from pyramid_mailer.message import Message
-        message = Message(subject="new account on pbx.pt",sender="itamar@ispbrasil.com.br",recipients=[email], body="your pbx.pt account details user=email password=pwd")
+        sub="pbx.pt account details"
+        msg="your pbx.pt account details\n\nuser = {}\npassword = {}".format(email, pwd)
+        message = Message(subject=sub,sender="itamar@ispbrasil.com.br",recipients=[email], body=msg)
         mailer.send(message)
         request.session.flash('New account added, please check your e-mail account.')
         return HTTPFound(location=request.route_url('home'))
+   else:
+        request.session.flash('Please enter your e-mail!')
+ return {}
+
+@view_config(route_name='password_recovery',renderer='recoverpass.mako')
+def password_recovery(request):
+ if request.method == 'POST':
+   if request.POST.get('email'):
+        email=request.POST.get('email')
+        user = User.by_email(email)
+        if (user):
+          from pyramid_mailer import get_mailer
+          mailer = get_mailer(request)
+          from pyramid_mailer.message import Message
+          sub="pbx.pt account details"
+          msg="your pbx.pt account details\n\nuser = {}\npassword = {}".format(user.email_address, user.password)
+          message = Message(subject=sub,sender="itamar@ispbrasil.com.br",recipients=[email], body=msg)
+          mailer.send(message)
+          request.session.flash('password details sent, please check your e-mail account.')
+          return HTTPFound(location=request.route_url('home'))
    else:
         request.session.flash('Please enter your e-mail!')
  return {}

@@ -10,6 +10,7 @@
 <p>You are not logged in!</p>
 <p><a href="${ request.route_url('login') }">Login</a></p>
 <p><a href="${ request.route_url('newaccount') }">New Account</a></p>
+<p><a href="${ request.route_url('password_recovery') }">Password Recovery</a></p>
 % endif
 <p><a href="${ request.route_url('features') }">Features</a></p>
 <p><a href="${ request.route_url('support') }">Support</a></p>
