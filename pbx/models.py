@@ -22,7 +22,7 @@ DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
 Base = declarative_base()
 
 class User(Base):
-    __tablename__ = 'user'
+    __tablename__ = 'users'
     user_id = Column(Integer, autoincrement=True, primary_key=True)
     email_address = Column(Unicode(255), unique=True)
     display_name = Column(Unicode(255))
@@ -38,7 +38,7 @@ class User(Base):
 
 
 class Extension(Base):
-    __tablename__ = 'ramais'
+    __tablename__ = 'extensions'
     extension_id = Column(Integer, primary_key=True, autoincrement=True)
     password = Column(Unicode(40))
     user_id = Column(Integer)
