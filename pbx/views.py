@@ -34,7 +34,7 @@ def user_view(request):
 def newexten(request):
    import string
    from random import choice
-   size = 40
+   size = 8
    pwd = ''.join([choice(string.letters + string.digits) for i in range(size)])
 
    login = authenticated_userid(request)
