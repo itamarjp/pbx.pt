@@ -11,9 +11,9 @@ from pyramid.paster import (
 
 from ..models import (
     DBSession,
-    MyModel,
     User,
     Base,
+    Extension
     )
 
 def usage(argv):
@@ -34,7 +34,7 @@ def main(argv=sys.argv):
     with transaction.manager:
         #model = MyModel(name='one', value=1)
         #DBSession.add(model)
-        model = User(email_address='itamar@ispbrasil.com.br',display_name='',password='x')
-        model = User(email_address='other@ispbrasil.com.br',display_name='',password='y')
+        #model = User(email_address='itamar@ispbrasil.com.br',display_name='',password='x')
+        #model = User(email_address='other@ispbrasil.com.br',display_name='',password='y')
         DBSession.add(model)
         pass

@@ -15,7 +15,6 @@ from pyramid.view import forbidden_view_config
 
 from .models import (
     DBSession,
-    MyModel,
     User,
     Extension,
     )
@@ -41,10 +40,14 @@ def newexten(request):
    login = authenticated_userid(request)
    user = User.by_email(login)
    user_id = user.user_id
-
-   exten = Extension(password=pwd,user_id=user_id,active=True)
-   DBSession.add(exten)
-   return {}
+   if DBSession.query(Extension).filter(Extension.user_id==user_id).count() > 4:
+     request.session.flash('you have reached the maximum of 5 extensions.')
+     failed=1
+   else:
+    exten = Extension(password=pwd,user_id=user_id,active=True)
+    DBSession.add(exten)
+    failed=0
+   return dict(failed=failed)
 
 
 @view_config(route_name='newaccount',renderer='newaccount.mako')
@@ -104,11 +107,11 @@ def logout_view(request):
 def listexten(request):
    login = authenticated_userid(request)
    user = User.by_email(login)
-   rs = DBSession.query(Extension).filter(Extension.user_id == user.user_id).all()
-  # print rs
-   #extensions = [dict(id=row[0], password=row[1]) for row in rs.fetchall()]
-   #return {'extensions':extensions}
-   return dict(extensions=rs)
+   if user:
+    rs = DBSession.query(Extension).filter(Extension.user_id == user.user_id).all()
+    return dict(extensions=rs)
+   else:
+    return dict()
 
 
 @view_config(route_name='sip.conf',renderer='sip.mako')

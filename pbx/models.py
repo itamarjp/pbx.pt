@@ -21,33 +21,6 @@ from zope.sqlalchemy import ZopeTransactionExtension
 DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
 Base = declarative_base()
 
-class MyModel(Base):
-    __tablename__ = 'models'
-    id = Column(Integer, primary_key=True)
-    name = Column(Text, unique=True)
-    value = Column(Integer)
-
-    def __init__(self, name, value):
-        self.name = name
-        self.value = value
-
-#class User(object):
-#    def __init__(self, login, password, groups=None):
-#        self.login = login
-#        self.password = password
-#        self.groups = groups or []
-#
-#    def check_password(self, passwd):
-#        return self.password == passwd
-
-class Group(Base):
-    __tablename__ = 'group'
-    group_id = Column(Integer, autoincrement=True, primary_key=True)
-    group_name = Column(Unicode(16), unique=True)
-    display_name = Column(Unicode(255))
-    created = Column(DateTime)
-
-
 class User(Base):
     __tablename__ = 'user'
     user_id = Column(Integer, autoincrement=True, primary_key=True)

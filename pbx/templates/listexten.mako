@@ -2,8 +2,8 @@
 
 <h1>Extension's List</h1>
 
-<table border=1>
 % if extensions:
+  <table border=1>
   <tr>
     <td align=center>extension</td><td align=center>password</td>
   </tr>
@@ -14,8 +14,8 @@
        <td>${extension.password}</td>
    </tr>
   % endfor
-
+  </table>
 % endif
-</table>
+
 
 <p><a href="${ request.route_url('home') }">Return to Home</a></p>
