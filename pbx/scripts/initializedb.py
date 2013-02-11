@@ -36,5 +36,5 @@ def main(argv=sys.argv):
         #DBSession.add(model)
         #model = User(email_address='itamar@ispbrasil.com.br',display_name='',password='x')
         #model = User(email_address='other@ispbrasil.com.br',display_name='',password='y')
-        DBSession.add(model)
+        #DBSession.add(model)
         pass
